@@ -1,7 +1,6 @@
 from typing import Any, Type
 
-from ioc.instance_incorrect_type_error import InstanceIncorrectTypeError
-from ioc.instance_not_found_error import InstanceNotFoundError
+from ioc.errors import *
 
 class IOC:
     def __init__(self):
