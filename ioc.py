@@ -1,6 +1,8 @@
-from typing import Any, Type
+from typing import Any, Type, TypeVar
 
 from ioc.errors import *
+
+T = TypeVar('T')
 
 class IOC:
     def __init__(self):
@@ -40,7 +42,7 @@ class IOC:
         if instance not in services:
             services.append(instance)
 
-    def get_instance(self, instance_type: Type, instance_id: str | None = None, required: bool = False) -> Any:
+    def get_instance(self, instance_type: Type[T], instance_id: str | None = None, required: bool = False) -> T | None:
         service = None
 
         if instance_id: 
@@ -59,7 +61,7 @@ class IOC:
 
         return service
     
-    def get_instances(self, instance_type: Type) -> list[Any]:
+    def get_instances(self, instance_type: Type[T]) -> list[T]:
         instance_key = self._anonymous_instance_key(instance_type)
 
         if not instance_key in self._anonymous_instances:
