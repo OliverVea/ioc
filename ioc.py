@@ -54,7 +54,7 @@ class IOC:
                 service = self._anonymous_instances[instance_key][-1]
         
         if required and service is None:
-            message = f'Could not find object with type \'{instance_type}\'' + f' and instance id \'{instance_id}\'' if instance_id else '' + '.'
+            message = f'Could not find object with type \'{instance_type}\'' + (f' and instance id \'{instance_id}\'' if instance_id else '') + '.'
             raise InstanceNotFoundError(message)
 
         return service
